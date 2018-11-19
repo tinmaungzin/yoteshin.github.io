@@ -9,7 +9,17 @@ function detailHide(){
 		
 		
 $(document).ready(function(){
-	$("#text").keyup(function(){
+	$("#text").keyup(mainFunc)
+			  .keypress(function(){
+			  	if (event.key === 'Enter') {
+		        	event.preventDefault();
+		        	return mainFunc;
+		    	}
+			  });
+});
+
+
+var mainFunc =function() {
 		$("#first_row").html('');
 		var s=document.demo.keyword.value;
 		$.ajax({
@@ -45,8 +55,16 @@ $(document).ready(function(){
         $('#list').show();
         $('#info').hide();
 
-    });			
-});
+  }
+		
+
+
+
+
+
+
+
+
 
 function movieInfo(i_url){
 	$.ajax({
